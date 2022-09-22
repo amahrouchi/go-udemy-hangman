@@ -3,12 +3,19 @@ package main
 import (
 	"fmt"
 	"os"
+	"tests/go-udemy-hangman/dictionary"
 	"tests/go-udemy-hangman/hangman"
 )
 
 func main() {
+	err := dictionary.Load("words.txt")
+	if err != nil {
+		fmt.Printf("Could not load dictionary: %v\n", err)
+		os.Exit(1)
+	}
+
 	hangman.DrawWelcome()
-	g := hangman.New(8, "Golang")
+	g := hangman.New(8, dictionary.PickWord())
 
 	guess := ""
 	for {
