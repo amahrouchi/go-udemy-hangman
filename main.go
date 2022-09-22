@@ -15,7 +15,12 @@ func main() {
 	}
 
 	hangman.DrawWelcome()
-	g := hangman.New(8, dictionary.PickWord())
+	word := dictionary.PickWord()
+	g, err := hangman.New(8, word)
+	if err != nil {
+		fmt.Printf("The selected word was invalid. word=%s\n", word)
+		os.Exit(1)
+	}
 
 	guess := ""
 	for {
