@@ -23,3 +23,11 @@ func TestLetterNotInWord(t *testing.T) {
 		t.Errorf("Word %s does not contains letter %s. got=%v", word, guess, hasLetter)
 	}
 }
+
+func TestInvalidWord(t *testing.T) {
+	_, err := New(3, "")
+
+	if err == nil {
+		t.Error("Error should be returned when using an invalid word.")
+	}
+}
