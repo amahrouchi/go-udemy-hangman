@@ -31,3 +31,18 @@ func TestInvalidWord(t *testing.T) {
 		t.Error("Error should be returned when using an invalid word.")
 	}
 }
+
+func TestGameGoodGuess(t *testing.T) {
+	g, _ := New(3, "Bob")
+	g.MakeAGuess("b")
+	validState(t, "goodGuess", g.State)
+}
+
+func validState(t *testing.T, expectedState string, actualState string) bool {
+	if expectedState != actualState {
+		t.Errorf("State should be '%s' got '%s'", expectedState, actualState)
+		return false
+	}
+
+	return true
+}
